@@ -19,7 +19,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   const navigate = useNavigate();
 
   return (
-    <div onClick={() => navigate(`/project/${id}`)} className="group relative w-[50vw] h-[60vh] bg-gray-300 dark:bg-gray-700 shadow-md rounded-lg overflow-hidden">
+    <div className="group relative w-[50vw] h-[60vh] bg-gray-300 dark:bg-gray-700 shadow-md rounded-lg overflow-hidden">
       <img
         src={img}
         alt="Project"
