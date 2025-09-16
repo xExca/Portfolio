@@ -1,10 +1,9 @@
-import { useNavigate } from "react-router-dom";
 type ProjectCardProps = {
   title: string;
   subtitle: string;
   techstack: { name: string; icon: React.ReactNode }[];
   description?: string;
-  id: string;
+  id?: string;
   img?: string;
 };
 
@@ -16,10 +15,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   id,
   img
 }) => {
-  const navigate = useNavigate();
 
   return (
-    <div className="group relative w-[50vw] h-[60vh] bg-gray-300 dark:bg-gray-700 shadow-md rounded-lg overflow-hidden">
+    <div key={id} className="group relative w-[50vw] h-[60vh] bg-gray-300 dark:bg-gray-700 shadow-md rounded-lg overflow-hidden">
       <img
         src={img}
         alt="Project"
