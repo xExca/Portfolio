@@ -6,8 +6,8 @@ const AboutPage = () => {
   return (
       <>
       <About />
-      <Projects />
       <Experience />
+      <Projects />
       </>
   )
 }
