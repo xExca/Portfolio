@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { projects } from "../data";
+import { Helmet } from "react-helmet-async";
 
 const Project = () => {
   const { id } = useParams();
@@ -8,10 +9,6 @@ const Project = () => {
   const data = projects.find((p) => p.id === id);
   const [current, setCurrent] = useState(0);
   const dragStartX = useRef<number | null>(null);
-
-  useEffect(() => {
-    if (data) document.title = data.title;
-  }, [data]);
 
   if (!data)
     return (
@@ -55,94 +52,101 @@ const Project = () => {
     if (Math.abs(diff) > 40) move(diff > 0 ? 1 : -1);
     dragStartX.current = null;
   };
+  
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-10">
-      {/* Back */}
-      <button
-        onClick={() => navigate(-1)}
-        className="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-blue-300 transition mb-8 cursor-pointer"
-      >
-        ← Back
-      </button>
-
-      {/* Carousel */}
-      {total > 0 && (
-        <div
-          className="relative h-80 md:h-[480px] mb-10"
-          style={{ perspective: "1000px" }}
-          onMouseDown={onDragStart}
-          onMouseUp={onDragEnd}
-          onTouchStart={onDragStart}
-          onTouchEnd={onDragEnd}
+    <>
+      <Helmet>
+        <title>{data.title} — Niño Austral</title>
+        <meta name="description" content={data.description} />
+        <meta property="og:title" content={data.title} />
+        <meta property="og:description" content={data.description} />
+      </Helmet>
+      <div className="max-w-3xl mx-auto px-6 py-10">
+        <button
+          onClick={() => navigate(-1)}
+          className="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-blue-300 transition mb-8 cursor-pointer"
         >
-          <div className="relative w-full h-full" style={{ transformStyle: "preserve-3d" }}>
-            {images.map((src, i) => (
-              <div
-                key={i}
-                onClick={() => i !== current && move(i - current)}
-                className={`carousel-slide absolute top-0 left-0 w-full h-full rounded-xl overflow-hidden cursor-pointer transition-all duration-500 ${getSlideClass(i)}`}
-              >
-                <img
-                  src={`/../public/${src}`}
-                  alt={`${data.title} screenshot ${i + 1}`}
-                  className="w-full h-full object-cover"
-                  draggable={false}
-                />
-              </div>
-            ))}
+          ← Back
+        </button>
+
+        {total > 0 && (
+          <div
+            className="relative h-80 md:h-[480px] mb-10"
+            style={{ perspective: "1000px" }}
+            onMouseDown={onDragStart}
+            onMouseUp={onDragEnd}
+            onTouchStart={onDragStart}
+            onTouchEnd={onDragEnd}
+          >
+            <div className="relative w-full h-full" style={{ transformStyle: "preserve-3d" }}>
+              {images.map((src, i) => (
+                <div
+                  key={i}
+                  onClick={() => i !== current && move(i - current)}
+                  className={`carousel-slide absolute top-0 left-0 w-full h-full rounded-xl overflow-hidden cursor-pointer transition-all duration-500 ${getSlideClass(i)}`}
+                >
+                  <img
+                    src={`${import.meta.env.BASE_URL}${src}`}
+                    alt={`${data.title} screenshot ${i + 1}`}
+                    className="w-full h-full object-cover"
+                    draggable={false}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
+        )}
+
+        <div className="border-b border-black dark:border-white/10 pb-8 mb-8">
+          <h1 className="text-3xl font-bold leading-tight mb-2 text-gray-900 dark:text-white">
+            {data.title}
+          </h1>
+          <p className="text-xs tracking-widest uppercase text-indigo-500 dark:text-indigo-300 mb-3">
+            {data.subtitle}
+          </p>
+          <p className="text-gray-500 dark:text-gray-400 leading-relaxed max-w-xl">
+            {data.description}
+          </p>
         </div>
-      )}
 
-      <div className="border-b border-black dark:border-white/10 pb-8 mb-8">
-        <h1 className="text-3xl font-bold leading-tight mb-2 text-gray-900 dark:text-white">
-          {data.title}
-        </h1>
-        <p className="text-xs tracking-widest uppercase text-indigo-500 dark:text-indigo-300 mb-3">
-          {data.subtitle}
+        <p className="text-xs tracking-widest uppercase text-gray-400 dark:text-gray-500 mb-3">
+          Tech Stack
         </p>
-        <p className="text-gray-500 dark:text-gray-400 leading-relaxed max-w-xl">
-          {data.description}
-        </p>
-      </div>
-
-      <p className="text-xs tracking-widest uppercase text-gray-400 dark:text-gray-500 mb-3">
-        Tech Stack
-      </p>
-      <div className="flex flex-wrap gap-2 mb-10">
-        {data.techstack.map((tech) => (
-          <span
-            key={tech.name}
-            className="px-3 py-1 rounded-full text-xs border border-indigo-300/50 bg-indigo-50 text-indigo-600 dark:border-indigo-500/30 dark:bg-indigo-500/10 dark:text-indigo-300"
-          >
-            {tech.name}
-          </span>
-        ))}
-      </div>
-
-      <p className="text-xs tracking-widest uppercase text-gray-400 dark:text-gray-500 mb-3">
-        Key Contributions
-      </p>
-      <ul className="flex flex-col gap-3">
-        {data.details.map((detail, i) => (
-          <li
-            key={i}
-            className="flex gap-4 items-start px-5 py-4 rounded-lg
-              bg-white border border-gray-400 text-black
-              hover:bg-blue-100 hover:border-blue-300 hover:text-gray-900
-              dark:bg-white/[0.03] dark:border-white/[0.06] dark:text-gray-400
-              dark:hover:bg-indigo-500/[0.06] dark:hover:border-indigo-500/20 dark:hover:text-gray-200
-              transition text-sm"
-          >
-            <span className="text-sm text-red-400 dark:text-white opacity-70 mt-0.5 w-5 shrink-0">
-              {String(i + 1).padStart(2, "0")}
+        <div className="flex flex-wrap gap-2 mb-10">
+          {data.techstack.map((tech) => (
+            <span
+              key={tech.name}
+              className="px-3 py-1 rounded-full text-xs border border-indigo-300/50 bg-indigo-50 text-indigo-600 dark:border-indigo-500/30 dark:bg-indigo-500/10 dark:text-indigo-300"
+            >
+              {tech.name}
             </span>
-            {detail}
-          </li>
-        ))}
-      </ul>
-    </div>
+          ))}
+        </div>
+
+        <p className="text-xs tracking-widest uppercase text-gray-400 dark:text-gray-500 mb-3">
+          Key Contributions
+        </p>
+        <ul className="flex flex-col gap-3">
+          {data.details.map((detail, i) => (
+            <li
+              key={i}
+              className="flex gap-4 items-start px-5 py-4 rounded-lg
+                bg-white border border-gray-400 text-black
+                hover:bg-blue-100 hover:border-blue-300 hover:text-gray-900
+                dark:bg-white/[0.03] dark:border-white/[0.06] dark:text-gray-400
+                dark:hover:bg-indigo-500/[0.06] dark:hover:border-indigo-500/20 dark:hover:text-gray-200
+                transition text-sm"
+            >
+              <span className="text-sm text-red-400 dark:text-white opacity-70 mt-0.5 w-5 shrink-0">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              {detail}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 };
 

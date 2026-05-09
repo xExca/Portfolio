@@ -18,7 +18,6 @@ const Navbar = () => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  // Lock body scroll when drawer is open
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
@@ -26,7 +25,6 @@ const Navbar = () => {
     return () => { document.body.style.overflow = prev; };
   }, [open]);
 
-  // Close on ESC
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     if (open) window.addEventListener("keydown", onKey);
@@ -41,21 +39,16 @@ const Navbar = () => {
   return (
     <header className="w-full bg-transparent flex items-center justify-center transition-all duration-300">
       <nav className="w-full max-w-7xl px-4 lg:px-0">
-        {/* Top bar */}
         <div className="h-20 grid grid-cols-12 items-center">
-          {/* Brand */}
           <div className="col-span-8 lg:col-span-3 text-base sm:text-lg lg:text-xl font-bold uppercase">
             NIÑO DAIÑELL M AUSTRAL
           </div>
 
-          {/* Desktop nav (only on lg and up) */}
           <ul className="hidden lg:flex col-span-6 justify-center items-center space-x-6 font-semibold text-lg">
             <li className="hover:text-gray-500 dark:hover:text-gray-400 cursor-pointer" onClick={() => go("/")}>About</li>
             <li className="hover:text-gray-500 dark:hover:text-gray-400 cursor-pointer" onClick={() => go("/projects")}>Projects</li>
             <li className="hover:text-gray-500 dark:hover:text-gray-400 cursor-pointer" onClick={() => go("/contact")}>Contact me</li>
           </ul>
-
-          {/* Actions (desktop) */}
           <div className="hidden lg:flex col-span-3 justify-end items-center gap-2">
             <button
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
@@ -66,15 +59,13 @@ const Navbar = () => {
             </button>
             <a
               className="text-gray-600 dark:text-gray-300 text-2xl p-1 w-10 h-10 flex items-center justify-center rounded-md focus:outline-none focus:ring"
-              href={`${import.meta.env.BASE_URL}/Nino_Austral_CV.pdf`}
+              href={`${import.meta.env.BASE_URL}Nino_Austral_CV.pdf`}
               download="Nino_Austral_CV.pdf"
               aria-label="Download CV"
             >
               <LuFile />
             </a>
           </div>
-
-          {/* Mobile/Tablet actions (lg:hidden) */}
           <div className="col-span-4 lg:hidden flex justify-end items-center gap-1">
             <button
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
@@ -94,9 +85,6 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-
-        {/* Off-canvas sidebar (phones + tablets) */}
-        {/* Backdrop */}
         <div
           onClick={() => setOpen(false)}
           className={`fixed inset-0 z-40 bg-black/40 transition-opacity lg:hidden ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
