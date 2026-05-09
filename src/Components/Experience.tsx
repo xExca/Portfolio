@@ -69,7 +69,6 @@ const Experience: React.FC = () => {
   });
 
   const pathLength = useTransform(smoothProgress, [0, 1], [0, 1]);
-  const dotProgress = useTransform(smoothProgress, (v) => `${v * 100}%`);
 
   const reversed = [...experiences].reverse();
 
@@ -138,7 +137,7 @@ const Experience: React.FC = () => {
             style={{ top: 0, left: 0, overflow: "visible" }}
           >
             <defs>
-              <filter id="exp-glow" x="-50%" y="-50%" width="200%" height="200%">
+              <filter x="-50%" y="-50%" width="200%" height="200%">
                 <feGaussianBlur stdDeviation="4" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
@@ -155,7 +154,6 @@ const Experience: React.FC = () => {
               strokeLinejoin="round"
             />
 
-            {/* Animated lit trail */}
             <motion.path
               d={pathD}
               fill="none"
@@ -164,14 +162,12 @@ const Experience: React.FC = () => {
               strokeLinecap="round"
               strokeLinejoin="round"
               style={{ pathLength }}
-              filter="url(#exp-glow)"
             />
 
             <circle
               ref={dotRef}
               r="5"
               fill="white"
-              filter="url(#exp-glow)"
             />
           </svg>
         )}

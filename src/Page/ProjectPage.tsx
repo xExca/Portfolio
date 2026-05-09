@@ -2,6 +2,7 @@ import ProjectCard from "../Components/ProjectCard"
 import { projects } from "../data"
 
 const ProjectPage = () => {
+  document.title = "Projects of Onins"
   return (
      <div className="flex flex-col gap-5">
       <div className="flex flex-col items-start justify-start gap-1">

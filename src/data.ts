@@ -11,13 +11,46 @@ type Project = {
   techstack: Techstack[];
   description: string;
   link: string;
-  img: string;
+  thumbnail: string;
+  images: string[];
   details: string[];
   isWork?: boolean;
 }
 
-// Merged data
 export const projects: Project[] = [
+  {
+    id: 'pass',
+    title: 'Parking Assistant Security System (PASS)',
+    subtitle: 'Parking and Monitoring System',
+    techstack: [
+      { name: "React", icon: "" },
+      { name: "TypeScript", icon: "" },
+      { name: "Tailwind", icon: "" },
+      { name: "PHP", icon: ""},
+      { name: "Laravel", icon: ""},
+      { name: "TanStack Query", icon: ""},
+      { name: "TanStack Table", icon: ""}
+    ],
+    description: "A System that help the security personnel to monitor and parked vehicle if it is employee owned or from the civilian",
+    link: "pass",
+    thumbnail: "assets/project/pass.png",
+    images: [
+      'assets/images/pass_dashboard.png',
+      'assets/images/pass_login.png',
+      'assets/images/pass_otp.png',
+      'assets/images/pass_table_data.png',
+      'assets/images/pass_table_nodata.png',
+    ],
+    details: [
+      "Configured and set up the server for the self-hosted action runner used in the CI/CD pipeline for the Parking Assistance Security System",
+      "Created the Nginx configuration for deploying both the frontend and backend applications.",
+      "Implemented passwordless authentication using an OTP-based login system",
+      "Developed a role-based user management system that allows administrators to configure user roles and permissions",
+      "Created a vehicle registration module with automatic QR sticker generation for use by security guards during scanning",
+      "Developed a function that enables security guards to scan existing QR codes to verify whether a vehicle is currently parked and determine the total parking duration.",
+      "Created database tables for Verification Logs, Registered Vehicles, and Security Guard Personnel"
+    ]
+  },
   {
     id: "aquamarine",
     title: "Aquamarine",
@@ -26,11 +59,16 @@ export const projects: Project[] = [
       { name: "React", icon: "" },
       { name: "TypeScript", icon: "" },
       { name: "Tailwind", icon: "" },
+      { name: "TanStack Query", icon: ""},
+      { name: "TanStack Table", icon: ""}
     ],
     description:
       "An E commerce website for Swimsuit and Swimwear",
-    link: "https://xexca.github.io/Aquamarine/",
-    img: "assets/project/aquamarine.png",
+    link: "https://xexca.github.io/aquamarine_frontend/",
+    thumbnail: "assets/project/aquamarine.png",
+    images: [
+      ''
+    ],
     details: [
       "An E commerce website that is made using React and TailwindCss.",
       "Create a clean and reusable component structure using React.",
@@ -45,7 +83,10 @@ export const projects: Project[] = [
     techstack: [],
     description: "",
     link: "",
-    img: "",
+    thumbnail: "",
+    images: [
+      ''
+    ],
     details: [
       "Revamped login module from Laravel to React, ensuring API compatibility and enforcing user roles and permissions.",
       "Developed the Patient Census module to track patient counts per pavilion, enabling verification and tallying of admitted patients.",
@@ -72,7 +113,10 @@ export const projects: Project[] = [
     description:
       "A Public Market Management System thats handle the process of rental and utility rates, payments, and receipts.",
     link: "https://placehold.co/500",
-    img: "assets/project/market.png",
+    thumbnail: "assets/project/market.png",
+    images: [
+      ''
+    ],
     details: [
       "Developed a user interface to display available slots/shops, including owner details, rental rates, and electricity costs.",
       "Built the admin module to manage rent and utility rates, perform CRUD operations on users/staff/collectors, verify payments, issue receipts, and manage sections, buildings, and shops.",
@@ -95,7 +139,10 @@ export const projects: Project[] = [
     description:
       "A web-based resort reservation system that allows users to book online with a module for admin and staff users to manage the reservation and validation of payment.",
     link: "https://placehold.co/500",
-    img: "assets/project/batis.png",
+    thumbnail: "assets/project/batis.png",
+    images: [
+      ''
+    ],
     details: [
       "Designed a responsive landing page to showcase resort amenities and provide quick reservation access.",
       "Built the admin module to manage staff and user accounts, implement CRUD operations for reservations, and verify payment transactions.",
@@ -112,7 +159,10 @@ export const projects: Project[] = [
     description:
       "A Learning module for grade school about the Solar System and the earth. It includes a embedded video and a quiz.",
     link: "https://placehold.co/500",
-    img: "assets/project/solar.png",
+    thumbnail: "assets/project/solar.png",
+    images: [
+      ''
+    ],
     details: [
       "Developed a Flip a Card game where players match similar solar system-themed cards.",
       "Built an Alignment of Planets game allowing students to arrange planets from the Sun to Neptune in correct order.",
@@ -133,7 +183,10 @@ export const projects: Project[] = [
     description:
       "A Salary Calculator that allows users to calculate their salary within how much they worked within the week",
     link: "https://placehold.co/500",
-    img: "assets/project/salary.png",
+    thumbnail: "assets/project/salary.png",
+    images: [
+      ''
+    ],
     details: [
       "Learn how to properly change the design of the window form to be more appealing",
       "Handles data manipulation and validation",
@@ -148,7 +201,10 @@ export const projects: Project[] = [
     description:
       "A simple CRUD for the student information system of Senior High School students.",
     link: "https://placehold.co/500",
-    img: "assets/project/shssis.png",
+    thumbnail: "assets/project/shssis.png",
+    images: [
+      ''
+    ],
     details: [
       "A simple CRUD for the student information system of Senior High School students.",
       "The first project that I made using C# Windows Form.",
@@ -167,7 +223,10 @@ export const projects: Project[] = [
     description:
       "My first ever project that I made. A simple static e commerce website.",
     link: "https://placehold.co/500",
-    img: "assets/project/kairpo.png",
+    thumbnail: "assets/project/kairpo.png",
+    images: [
+      ''
+    ],
     details: [
       "A static webpage for an e-commerce site built with HTML, CSS, and JavaScript.",
       "Implements basic web-development fundamentals such as loops and conditionals.",

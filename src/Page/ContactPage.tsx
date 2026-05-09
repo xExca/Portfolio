@@ -7,6 +7,7 @@ const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID!;
 const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY!;
 
 export default function ContactPage() {
+  document.title = "Contact Onins? :O"
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [err, setErr] = useState<string | null>(null);
