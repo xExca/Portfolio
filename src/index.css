@@ -14,6 +14,18 @@
   }
 }
 
+:root {
+  --exp-line-track: rgba(0, 0, 0, 0.1);
+  --exp-line-active: #000000;
+  --exp-dot: #000000;
+}
+
+.dark {
+  --exp-line-track: rgba(255, 255, 255, 0.1);
+  --exp-line-active: #ffffff;
+  --exp-dot: #ffffff;
+}
+
 * {
   -ms-overflow-style: none;  /* IE & old Edge */
   scrollbar-width: none;     /* Firefox */

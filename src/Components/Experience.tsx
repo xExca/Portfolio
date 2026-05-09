@@ -148,26 +148,21 @@ const Experience: React.FC = () => {
             <path
               d={pathD}
               fill="none"
-              stroke="rgba(255,255,255,0.1)"
+              stroke="var(--exp-line-track)"
               strokeWidth="3"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
 
             <motion.path
+              id="exp-path-animated"
               d={pathD}
               fill="none"
-              stroke="white"
+              stroke="var(--exp-line-active)"
               strokeWidth="3"
               strokeLinecap="round"
               strokeLinejoin="round"
               style={{ pathLength }}
-            />
-
-            <circle
-              ref={dotRef}
-              r="5"
-              fill="white"
             />
           </svg>
         )}

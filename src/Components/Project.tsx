@@ -117,7 +117,7 @@ const Project = () => {
           {data.techstack.map((tech) => (
             <span
               key={tech.name}
-              className="px-3 py-1 rounded-full text-xs border border-indigo-300/50 bg-indigo-50 text-indigo-600 dark:border-indigo-500/30 dark:bg-indigo-500/10 dark:text-indigo-300"
+              className="px-2.5 py-1 rounded-md text-xs text-white border border-white/20 bg-black/40 backdrop-blur-sm"
             >
               {tech.name}
             </span>

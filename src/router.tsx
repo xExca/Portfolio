@@ -4,11 +4,13 @@ import ProjectPage from "./Page/ProjectPage";
 import Layout from "./Layout";
 import Project from "./Components/Project";
 import ContactPage from "./Page/ContactPage";
+import Analytics from "./Components/Analytics";
 
 export default function AppRoute() {
   const basename = import.meta.env.BASE_URL.replace(/\/$/, "");
   return (
     <BrowserRouter basename={basename}>
+      <Analytics />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<AboutPage />} />
